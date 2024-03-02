@@ -6,14 +6,14 @@ pipeline {
         stage('Checkout Codebase'){
             steps{
                 cleanWs()
-                checkout scm: [$class: 'GitSCM', branches: [name: '*/main']] userTemoteConfigs: [url: 'https://github.com/loggustas/AutomatedJenkinsTest.git']
+                checkout scm: [$class: 'GitSCM', branches: [name: '*/main']] userRemoteConfigs: [url: 'https://github.com/loggustas/AutomatedJenkinsTest.git']
             }
         }
 
         stage('Build'){
             steps{
                 sh 'mkdir lib'
-                sh 'cd lib/ ; wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone-1.8.0-all.jar'
+                sh 'cd lib/ ; wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.0/junit-platform-console-standalone-1.8.0-all.jar'
                 sh 'cd src ; javac -cp "../lib/junit-platform-console-standalone-1.8.0-all.jar" TestClass.java'
             }
         }
