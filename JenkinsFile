@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout Codebase'){
             steps{
                 cleanWs()
-                
+                checkout scm: [$class: 'GitSCM', branches: [name: '*/main']] userTemoteConfigs: [url: 'https://github.com/loggustas/AutomatedJenkinsTest.git']
             }
         }
 
